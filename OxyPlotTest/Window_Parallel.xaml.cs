@@ -1,6 +1,4 @@
-﻿using OxyPlot;
-using OxyPlot.Series;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,39 +10,37 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
+using OxyPlot.Series;
+using OxyPlot;
 
 namespace OxyPlotTest
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Window_Parallel.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Window_Parallel : Window
     {
-        public MainWindow()
+        public Window_Parallel()
         {
             InitializeComponent();
         }
-
         static double func(double x)
         {
             return 7 * x - Math.Log(7 * x) + 8;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void draw()
         {
-           
-            bool mode = false;
             Stopwatch sw = new Stopwatch();
             (graph1.Model.Series[0] as FunctionSeries).Points.Clear();
             //(graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(10, 0));
+            bool mode = true;
             int k = 1;
             double h = 1.0;
             int a = 1;
             int b = 10000;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i< 5; i++)
             {
                     sw.Start();
                     result.Text = Integral.Calculation(mode, a, b, h, func).ToString();
@@ -55,17 +51,10 @@ namespace OxyPlotTest
                     h /= 5;
                 
             }
-            
-            
-            //(graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(20, 20));
-            graph1.InvalidatePlot();
-            Window_Parallel q = new Window_Parallel();
-            q.Show();
-            q.draw();
-            Window_Bar_Series w = new Window_Bar_Series();
-            w.Show();
-            w.draw();
-           //(graph1.Model.Series[1] as BarSeries).Items.Add(new BarItem(3));
-        }
+
+
+        //(graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(20, 20));
+        graph1.InvalidatePlot();
+            }
     }
 }
